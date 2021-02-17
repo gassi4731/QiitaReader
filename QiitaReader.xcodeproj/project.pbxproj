@@ -13,6 +13,8 @@
 		756E7AA925DA48B400701680 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756E7AA725DA48B400701680 /* Main.storyboard */; };
 		756E7AAB25DA48B600701680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 756E7AAA25DA48B600701680 /* Assets.xcassets */; };
 		756E7AAE25DA48B600701680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 756E7AAC25DA48B600701680 /* LaunchScreen.storyboard */; };
+		75FAA81C25DCDAD6008BE445 /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75FAA81B25DCDAD6008BE445 /* APIKey.plist */; };
+		75FAA81F25DCDC72008BE445 /* KeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FAA81E25DCDC72008BE445 /* KeyManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		756E7AAA25DA48B600701680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		756E7AAD25DA48B600701680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		756E7AAF25DA48B600701680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75FAA81B25DCDAD6008BE445 /* APIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
+		75FAA81E25DCDC72008BE445 /* KeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,12 @@
 				756E7AA125DA48B400701680 /* AppDelegate.swift */,
 				756E7AA325DA48B400701680 /* SceneDelegate.swift */,
 				756E7AA525DA48B400701680 /* ViewController.swift */,
+				75FAA81B25DCDAD6008BE445 /* APIKey.plist */,
 				756E7AA725DA48B400701680 /* Main.storyboard */,
 				756E7AAA25DA48B600701680 /* Assets.xcassets */,
 				756E7AAC25DA48B600701680 /* LaunchScreen.storyboard */,
 				756E7AAF25DA48B600701680 /* Info.plist */,
+				75FAA81E25DCDC72008BE445 /* KeyManager.swift */,
 			);
 			path = QiitaReader;
 			sourceTree = "<group>";
@@ -126,6 +132,7 @@
 			files = (
 				756E7AAE25DA48B600701680 /* LaunchScreen.storyboard in Resources */,
 				756E7AAB25DA48B600701680 /* Assets.xcassets in Resources */,
+				75FAA81C25DCDAD6008BE445 /* APIKey.plist in Resources */,
 				756E7AA925DA48B400701680 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +147,7 @@
 				756E7AA625DA48B400701680 /* ViewController.swift in Sources */,
 				756E7AA225DA48B400701680 /* AppDelegate.swift in Sources */,
 				756E7AA425DA48B400701680 /* SceneDelegate.swift in Sources */,
+				75FAA81F25DCDC72008BE445 /* KeyManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
