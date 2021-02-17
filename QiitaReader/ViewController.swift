@@ -18,10 +18,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         table.dataSource = self
         
-        dateTest()
-        
         // QiitaAPIを呼び出す
-//        getQiitaAPI()
+        getQiitaAPI()
     }
     
     // QiitaAPIを呼び出してデータを取得する
@@ -98,20 +96,36 @@ class ViewController: UIViewController, UITableViewDataSource {
             if userData["name"] as? String != "" {
                 userName = userData["name"] as? String
             } else {
-                userName = "no data"
+                userName = "no name"
             }
             
             // 値をラベルに入れていく
-            dateAndTagLabel.text = data["created_at"] as? String
+            dateAndTagLabel.text = dateFormatter(inputDate: data["created_at"] as! String) + "   " + tagFormatter(tags: data["tags"] as! NSArray)
             titleLabel.text = data["title"] as? String
             userImageView.image = UIImage(data: imgFile)
             userNameLabel.text = userName
-            
         } else {
             titleLabel.text = "no data"
         }
         
         return cell
+    }
+    
+    // 年月日を切り出して文字列で返却
+    func dateFormatter(inputDate: String) -> String {
+        let date: String = String(inputDate.prefix(10)) // 年月日を示す部分を切り出し
+        let formatDate: String = date.replacingOccurrences(of: "-", with: ".") // -を.に置き換え
+        return formatDate
+    }
+    
+    // タグの情報を文字列で返却
+    func tagFormatter(tags: NSArray) -> String {
+        var returnText: String = ""
+        for i in tags {
+            let tag: NSDictionary = i as! NSDictionary
+            returnText = returnText + " #" + (tag["name"] as! String)
+        }
+        return returnText
     }
 }
 
