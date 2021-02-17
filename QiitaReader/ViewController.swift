@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var qiitaData:NSArray!
     
@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         table.dataSource = self
+        table.delegate = self
         
         // QiitaAPIを呼び出す
         getQiitaAPI()
@@ -80,7 +81,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         if qiitaData != nil {
             // 全部のデータ（記事1つ）
-            let data: NSDictionary = qiitaData[indexPath.row] as! NSDictionary
+            let data: NSDictionary = oneArticle(num: indexPath.row)
             // ユーザーに関するデータ
             let userData: NSDictionary = data["user"] as! NSDictionary
             
@@ -95,6 +96,8 @@ class ViewController: UIViewController, UITableViewDataSource {
             var userName: String!
             if userData["name"] as? String != "" {
                 userName = userData["name"] as? String
+            } else if userData["id"] as? String != "" {
+                userName = userData["id"] as? String
             } else {
                 userName = "no name"
             }
@@ -109,6 +112,19 @@ class ViewController: UIViewController, UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    // タップされた時の挙動
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data: NSDictionary = oneArticle(num: indexPath.row)
+        // Safariに飛ばす
+        let url = URL(string: data["url"] as! String)
+        UIApplication.shared.open(url!)
+    }
+    
+    // 1つの記事データを返す
+    func oneArticle(num: Int) -> NSDictionary {
+        return qiitaData[num] as! NSDictionary
     }
     
     // 年月日を切り出して文字列で返却
@@ -128,4 +144,3 @@ class ViewController: UIViewController, UITableViewDataSource {
         return returnText
     }
 }
-
