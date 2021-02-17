@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Qiitaの最新記事"
+        
         table.dataSource = self
         table.delegate = self
         
