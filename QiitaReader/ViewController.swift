@@ -18,8 +18,10 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         table.dataSource = self
         
+        dateTest()
+        
         // QiitaAPIを呼び出す
-        getQiitaAPI()
+//        getQiitaAPI()
     }
     
     // QiitaAPIを呼び出してデータを取得する
@@ -66,17 +68,50 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     // セルの中に表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath as IndexPath)
+        
+        // tableView周りの設定
+        tableView.rowHeight = 85
+        tableView.separatorInset = .zero
+        
+        // ラベルと関連付けを行う
+        let dateAndTagLabel = cell.viewWithTag(1) as! UILabel
+        let titleLabel = cell.viewWithTag(2) as! UILabel
+        let userImageView = cell.viewWithTag(3) as! UIImageView
+        let userNameLabel = cell.viewWithTag(4) as! UILabel
         
         if qiitaData != nil {
+            // 全部のデータ（記事1つ）
             let data: NSDictionary = qiitaData[indexPath.row] as! NSDictionary
-            cell?.textLabel?.text = "get Data"
-            cell?.textLabel?.text = data["title"] as? String
+            // ユーザーに関するデータ
+            let userData: NSDictionary = data["user"] as! NSDictionary
+            
+            // 写真を表示するための準備
+            let imgUrl = URL(string: userData["profile_image_url"] as! String)!
+            let imgFile = try! Data(contentsOf: imgUrl)
+            
+            // 画像を丸くする
+            userImageView.layer.cornerRadius = userImageView.frame.size.width * 0.5
+            
+            // ユーザー名が取得できない問題への対処
+            var userName: String!
+            if userData["name"] as? String != "" {
+                userName = userData["name"] as? String
+            } else {
+                userName = "no data"
+            }
+            
+            // 値をラベルに入れていく
+            dateAndTagLabel.text = data["created_at"] as? String
+            titleLabel.text = data["title"] as? String
+            userImageView.image = UIImage(data: imgFile)
+            userNameLabel.text = userName
+            
         } else {
-            cell?.textLabel?.text = "no data"
+            titleLabel.text = "no data"
         }
         
-        return cell!
+        return cell
     }
 }
 
