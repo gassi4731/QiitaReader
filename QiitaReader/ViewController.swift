@@ -63,7 +63,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if qiitaData != nil {
             return qiitaData.count
         } else {
-            return 1
+            return 0
         }
     }
     
